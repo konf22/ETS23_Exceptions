@@ -1,6 +1,7 @@
 package org.campus02.stack;
 
 import org.campus02.stack.exceptions.StackEmptyException;
+import org.campus02.stack.exceptions.StackFullException;
 
 public class IntStack {
 
@@ -12,7 +13,13 @@ public class IntStack {
         this.pointer = -1;
     }
 
-    public void push(int value) {
+    public void push(int value) throws StackFullException {
+        // wenn der pointer == länger des stacks - 1
+        // dann soll StackFullException geworfen werden
+        if (pointer == stack.length - 1) {
+           // throw new StackFullException("The stack is full");
+            throw new StackFullException(stack.length);
+        }
         pointer ++; //pointer um 1 erhöhen
         stack[pointer] = value;
     }
